@@ -214,7 +214,7 @@ The app automatically URL-encodes spaces and special characters. The log panel s
 
 ### 1.3.0
 
-Sort by sorting fixed
+Sort by size fixed
 
 ### 1.2.0
 - Added recursive Analyze feature for automatic subdirectory scanning
