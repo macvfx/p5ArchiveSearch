@@ -26,6 +26,7 @@ P5 Archive Search provides a modern SwiftUI interface for exploring the contents
 - Archiware P5 server with REST API enabled
 - Network access to P5 server
 - Optional: `jq` installed for CSV generation (`brew install jq`)
+- **Note:** jq is included by default in macOS 15 (Sequoia) and later
 
 ## Quick Start
 
