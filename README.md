@@ -3,6 +3,7 @@
 A native macOS application for browsing and searching Archiware P5 Archive Index inventory.
 
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-orange) ![License](https://img.shields.io/badge/License-MIT-green)
+<img width="1121" height="852" alt="p5archivesearch-setup" src="https://github.com/user-attachments/assets/f136cbb8-f1f9-4aa1-adf0-6eb19f7d3510" />
 
 ## Overview
 
@@ -40,6 +41,8 @@ P5 Archive Search provides a modern SwiftUI interface for exploring the contents
 3. **Enter a Starting Path** - Type a path like `Volumes/YourVolume` in the path field
 4. **Click Browse** - The app will query the P5 server and display the contents
 5. **Navigate** - Double-click folders to drill down, use breadcrumbs to navigate back
+6. 
+<img width="1010" height="269" alt="p5archivesearch-setup2" src="https://github.com/user-attachments/assets/9740bf01-71ab-4d3e-a842-a82526b7147a" />
 
 ## API Endpoint
 
