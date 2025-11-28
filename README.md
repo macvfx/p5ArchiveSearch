@@ -136,7 +136,7 @@ MIT License - See LICENSE file for details.
 
 ## Acknowledgments
 
-- Built for use with [Archiware P5](https://www.archiware.com/)
+Built for use with [Archiware P5](https://www.archiware.com/)
 
 ## Version History
 
