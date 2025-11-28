@@ -143,9 +143,12 @@ Built for use with [Archiware P5](https://www.archiware.com/)
 
 ## Version History
 
-### 1.0.0
+### 1.0 build 3
 - Initial release
 - Browse and search P5 Archive Index inventory
 - SQLite database for offline searching
 - CSV and JSON export
 - Multi-server support with secure credential storage
+
+### 1.1
+Adjusted minimum macOS to 14.6 Sonoma
