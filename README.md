@@ -212,8 +212,16 @@ The app automatically URL-encodes spaces and special characters. The log panel s
 
 ## Version History
 
-### 1.3.0
+### 1.6.0
+Browse in search mode
 
+### 1.5.0
+Barcode now shown (resolution from P5 volumes)
+
+### 1.4.0
+Folder sizes background scan per server
+
+### 1.3.0
 Sort by size fixed
 
 ### 1.2.0
