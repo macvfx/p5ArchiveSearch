@@ -212,6 +212,10 @@ The app automatically URL-encodes spaces and special characters. The log panel s
 
 ## Version History
 
+### 1.7.0
+- Import Servers JSON** and **Export Servers JSON** buttons in the server sidebar.
+- Auto-detection of `P5Servers.json`** at launch from `/Users/Shared/` and `~/Documents/`.
+
 ### 1.6.0
 Browse in search mode
 
