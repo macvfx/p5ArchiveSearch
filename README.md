@@ -173,7 +173,7 @@ GET http://{server}:{port}/rest/v1/archive/indexes/{archive-index}/inventory/{pa
 
 Example:
 ```
-http://192.168.1.100:8000/rest/v1/archive/indexes/Default-Archive/inventory/Volumes/JellyfishSMB
+http://192.168.1.100:8000/rest/v1/archive/indexes/Default-Archive/inventory/Volumes/MyStorageSMB
 ```
 
 ## Troubleshooting
