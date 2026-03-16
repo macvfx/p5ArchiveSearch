@@ -212,6 +212,31 @@ The app automatically URL-encodes spaces and special characters. The log panel s
 
 ## Version History
 
+### 2.1.0
+### New Features
+- **Manage Servers sheet** — new dedicated dialog for all server management: Add, Edit, Duplicate, Delete, Import JSON, and Export JSON; replaces scattered sidebar controls
+- **Duplicate Server** — clone an existing server configuration including Keychain password, archive index, and scan settings in one click; lastScanDate is reset on the copy
+
+### UI Changes
+
+- **Cleaner sidebar** — now shows only the server list, a single Manage Servers button, and database stats
+- **Add/Edit Server form** — IP Address and Port inputs now on separate rows for clearer spacing
+- **Manual import warning** — importing JSON now warns before proceeding when duplicates are detected, then imports only new entries
+
+### Import/Export Improvements
+
+- **Duplicate detection refined** — a server is duplicate only when alias, IP address, port, and archive index all match, so the same host can serve multiple archive indexes
+- 
+### 2.0.0
+- Fixed **multi-volume barcode resolution** — when a P5 archive job spans leader + follower tapes, the volume field is returned as an array; previously parsed as nil with no barcode displayed; now handles both String and Array volume fields
+
+### 1.9.0
+- **Sidebar header** now shows "P5 Archive Search" and the current version number (read from app bundle) instead of plain "Servers" label
+
+### 1.8.0
+- Added **About window** — shows app name, version, build number, copyright, and link to code.matx.ca
+- Added **Help menu item** — opens the About window from the Help menu
+  
 ### 1.7.0
 - Import Servers JSON and **Export Servers JSON** buttons in the server sidebar.
 - Auto-detection of `P5Servers.json` at launch from `/Users/Shared/` and `~/Documents/`.
@@ -234,7 +259,6 @@ Sort by size fixed
 - Stoppable analysis with summary statistics
 - Improved error handling for failed folders
 
-
 ### 1.1
 Adjusted minimum macOS to 14.6 Sonoma
 
@@ -247,7 +271,7 @@ Adjusted minimum macOS to 14.6 Sonoma
 
 ## License
 
-MIT License
+Apache 2.0 License
 
 ## Acknowledgments
 
