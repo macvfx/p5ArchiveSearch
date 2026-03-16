@@ -2,7 +2,7 @@
 
 A native macOS application for browsing and searching Archiware P5 Archive Index inventory.
 
-![macOS](https://img.shields.io/badge/macOS-14.0+-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-orange) ![License](https://img.shields.io/badge/License-MIT-green)
+![macOS](https://img.shields.io/badge/macOS-14.0+-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-orange)
 <img width="1121" height="852" alt="p5archivesearch-setup" src="https://github.com/user-attachments/assets/f136cbb8-f1f9-4aa1-adf0-6eb19f7d3510" />
 
 ## Overview
