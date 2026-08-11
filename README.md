@@ -173,7 +173,7 @@ GET http://{server}:{port}/rest/v1/archive/indexes/{archive-index}/inventory/{pa
 
 Example:
 ```
-http://192.168.1.100:8000/rest/v1/archive/indexes/Default-Archive/inventory/Volumes/MyStorageSMB
+http://p5-search.example.invalid:8000/rest/v1/archive/indexes/Example-Archive/inventory/Volumes/Example_Project
 ```
 
 ## Troubleshooting
@@ -211,6 +211,13 @@ The app automatically URL-encodes spaces and special characters. The log panel s
 | Cancel | Escape |
 
 ## Version History
+
+### 2.1.1 (Build 9) — 2026-08-10
+
+- **Reviewed server discovery** — `P5Servers.json` is shown in a review sheet before any new connections are added.
+- **Decision controls** — add the new servers, defer with **Not Now**, or ignore that exact file revision.
+- **Stable identity** — matches host, port, username, and archive index without using the editable alias.
+- **Revision memory** — accepted and ignored manifests are remembered by SHA-256 fingerprint, preventing repeated prompts and unwanted re-creation of deleted configurations.
 
 ### 2.1.0
 ### New Features
