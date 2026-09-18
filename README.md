@@ -2,7 +2,7 @@
 
 A native macOS application for browsing and searching Archiware P5 Archive Index inventory.
 
-![macOS](https://img.shields.io/badge/macOS-14.0+-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-orange)
+![macOS](https://img.shields.io/badge/macOS-14.6+-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-orange)
 <img width="1121" height="852" alt="p5archivesearch-setup" src="https://github.com/user-attachments/assets/f136cbb8-f1f9-4aa1-adf0-6eb19f7d3510" />
 
 ## Overview
@@ -22,6 +22,28 @@ The **Analyze** feature recursively scans all subdirectories from a starting pat
 - Stop anytime with the Stop button
 - Continues scanning even if individual folders encounter errors
 - Rate-limited requests to avoid overwhelming the server
+
+### Restore
+Ask P5 to restore a file or a whole folder, to its original location or somewhere else, and watch
+the job to completion.
+
+- Before submitting, the app asks P5 which volume the data is on and whether that volume is online,
+  so a restore waiting on a tape is known about in advance rather than discovered later
+- The volume's **location** field is shown as the operator wrote it, which on sites without a
+  barcode reader is the only clue to which tape is needed
+- Long jobs keep being watched, and a restore interrupted by quitting the app is picked up again
+- Every restore the app has asked for is kept, including ones that did not finish
+
+### HTTP or HTTPS per server
+P5 serves the same REST API in the clear on port 8000 and over TLS on port 8443. Each server has
+its own Protocol setting, since TLS is enabled per installation.
+
+- Choosing HTTPS moves the port to 8443
+- **Check Certificate** shows the fingerprint and subject of the certificate the server presents,
+  and whether macOS trusts it. P5 ships a self-signed certificate that macOS will not accept on its
+  own, so trusting it once records that exact certificate
+- A server that later presents a different certificate is refused, not quietly accepted
+- The setting applies everywhere the app talks to P5, including restores
 
 ### Fast Offline Search
 Search your indexed items instantly without making API calls. Filter by:
@@ -47,15 +69,17 @@ Server passwords are stored securely in the macOS Keychain, never in plain text.
 - macOS 14.6 (Sonoma) or later
 - Archiware P5 server with REST API enabled
 - Network access to the P5 server
-- Optional: `jq` installed for automatic CSV generation (`brew install jq`)
-- Note: jq is included by default in macOS 15 (Sequoia) and later
+
+Nothing else. Since 2.6 the app writes its CSVs itself and launches no subprocesses, so `jq` is no
+longer required.
 
 ## Quick Start
 
-1. **Add a Server** - Click the `+` button in the sidebar
+1. **Add a Server** - Click `Manage Servers` in the sidebar, then `Add`
 2. **Enter Connection Details**:
    - Alias: A friendly name for the server
    - IP Address: The P5 server IP or hostname
+   - Protocol: HTTP or HTTPS (HTTPS moves the port to 8443)
    - Port: Usually `8000`
    - Archive Index: The index to query (e.g., `Default-Archive`)
    - Username/Password: Your P5 credentials
@@ -153,7 +177,7 @@ Location: `~/Documents/P5ArchiveSearch/`
 
 Each browse query saves:
 - `inventory_{timestamp}.json` - Raw JSON response
-- `inventory_{server}_{timestamp}.csv` - Formatted CSV (requires jq)
+- `inventory_{server}_{timestamp}.csv` - Formatted CSV, written by the app
 
 ### Server Configurations
 - Server settings stored in UserDefaults
@@ -199,9 +223,11 @@ http://p5-search.example.invalid:8000/rest/v1/archive/indexes/Example-Archive/in
 ### Paths with Spaces
 The app automatically URL-encodes spaces and special characters. The log panel shows both original and encoded paths when they differ.
 
-### CSV Not Generated
-- Install jq: `brew install jq`
-- JSON files are still saved even without jq
+### A server's certificate is refused
+P5 ships a self-signed certificate macOS will not accept. Edit the server, click **Check
+Certificate**, and trust it once. If the message says the server presented a *different*
+certificate than the one trusted, it changed — a reinstall or renewal does that; if nothing
+changed on the server, do not trust the new one.
 
 ## Keyboard Shortcuts
 
@@ -211,6 +237,33 @@ The app automatically URL-encodes spaces and special characters. The log panel s
 | Cancel | Escape |
 
 ## Version History
+
+### 2.7 (Build 18) — 2026-09-18
+- Each server chooses HTTP or HTTPS. P5 serves the same REST API over TLS on port 8443
+- Certificate checking, with pinning for the self-signed certificate P5 ships. A server that later presents a different certificate is refused
+- The setting applies to every request the app makes, including restores
+
+### 2.6 (Build 17) — 2026-09-17
+- No P5 password reaches a process's arguments. Every read went through a shell script carrying the password; all of it now happens in-process
+- `jq` is no longer required for the CSV written alongside a browse
+
+### 2.5 (Build 15) — 2026-09-17
+- A restore says which volume it needs and whether that volume is online, before it is submitted
+- The volume's operator-written location is shown, which on sites without a barcode reader is the only clue to which tape is needed
+- Long restores keep being watched, and one interrupted by quitting is resumed
+
+### 2.4 (Build 13) — 2026-09-17
+- Restore a whole folder, not only a single file
+- The job's current resource is shown while a restore runs
+
+### 2.3 (Build 12) — 2026-09-17
+- **Restore** — ask P5 to restore a file to its original location or somewhere else, and watch the job
+
+### 2.2 (Build 11) — 2026-09-16
+- In-app user guide and What's New
+- Identify Orphaned Servers — find cached items whose server was renamed, and adopt them
+- Server identity recorded by address rather than by alias, so renaming a server no longer orphans its cache
+- Configuration log of every server and cache change
 
 ### 2.1.1 (Build 9) — 2026-08-10
 
