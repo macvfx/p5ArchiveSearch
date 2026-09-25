@@ -45,6 +45,15 @@ its own Protocol setting, since TLS is enabled per installation.
 - A server that later presents a different certificate is refused, not quietly accepted
 - The setting applies everywhere the app talks to P5, including restores
 
+### Imported Volumes
+An index rooted at **volume labels**, such as Imported-Volumes, has no `Volumes` or `mnt` at its top, and P5 does not list the labels over its API. Its top level is the label of each volume, with the original folders inside, so a browse or a scan has to start from one. Each index is its own server entry, added once per P5 server.
+
+- **Find imported volumes…** in the server sheet tries each volume's label as a top-level name in the index and lists the ones the index answers for, with the folders inside. It only reads
+- **Add names by hand** takes a pasted list and checks each name against the index, for a label that has no volume record
+- The drive-icon menu keeps `Volumes` and `mnt` at the top and lists the labels under **Imported volumes**
+- **Scan all imported volumes into search** analyzes each label in turn, because search only covers what has been scanned
+- A label two volumes share is flagged, since a label-rooted path cannot tell them apart
+
 ### Fast Offline Search
 Search your indexed items instantly without making API calls. Filter by:
 - File or folder name
@@ -83,7 +92,7 @@ longer required.
    - Port: Usually `8000`
    - Archive Index: The index to query (e.g., `Default-Archive`)
    - Username/Password: Your P5 credentials
-3. **Enter a Starting Path** - Type a path like `Volumes/YourVolume`
+3. **Enter a Starting Path** - Type a path like `Volumes/YourVolume`. For an imported-volumes index, start from a volume label instead: see [Imported Volumes](#imported-volumes)
 4. **Browse or Analyze**:
    - Click **Browse** to view the contents of that path
    - Click **Analyze** to recursively scan all subdirectories
@@ -207,6 +216,11 @@ http://p5-search.example.invalid:8000/rest/v1/archive/indexes/Example-Archive/in
 - Check the IP address, port, and credentials
 - Ensure the P5 REST API is enabled on the server
 - Try accessing the API URL directly in a browser
+- The log says why a request failed: the HTTP status and what it means, or the cause when there was no answer. P5 answers a wrong password with HTTP 400, not 401, and the log says so
+- Every request is also recorded in the unified log; in Terminal, `log show --last 1h --predicate 'category == "requests"'`
+
+### Nothing appears in an imported-volumes index
+`Volumes` and `mnt` return nothing there: that index is rooted at volume labels. Open the server, click **Find imported volumes…**, add what it finds, and start from a label in the drive-icon menu.
 
 ### No Items Displayed
 - Verify the archive index name is correct
@@ -237,6 +251,11 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.8 (Build 19) — 2026-09-25
+- Find the volume labels of an imported-volumes index, and offer them as browse roots and scan paths, so they need not be typed. **Scan all imported volumes into search** covers them
+- A failed request says why: the HTTP status and what it means, or the cause when there was no answer. A wrong password reads as one instead of as an unreachable server
+- Every P5 request the app makes is recorded in the unified log (category `requests`), without the password
 
 ### 2.7 (Build 18) — 2026-09-18
 - Each server chooses HTTP or HTTPS. P5 serves the same REST API over TLS on port 8443
