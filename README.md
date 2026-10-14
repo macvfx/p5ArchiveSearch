@@ -46,9 +46,9 @@ its own Protocol setting, since TLS is enabled per installation.
 - The setting applies everywhere the app talks to P5, including restores
 
 ### Imported Volumes
-An index rooted at **volume labels**, such as Imported-Volumes, has no `Volumes` or `mnt` at its top, and P5 does not list the labels over its API. Its top level is the label of each volume, with the original folders inside, so a browse or a scan has to start from one. Each index is its own server entry, added once per P5 server.
+An index rooted at **volume labels**, such as Imported-Volumes, has no `Volumes` or `mnt` at its top. Its top level is the label of each volume, with the original folders inside. Browsing an empty path lists those labels, so you can open one without typing it. Each index is its own server entry, added once per P5 server.
 
-- **Find imported volumes…** in the server sheet tries each volume's label as a top-level name in the index and lists the ones the index answers for, with the folders inside. It only reads
+- **Find imported volumes…** in the server sheet opens and searches at once. It lists the top level of the index, which is the labels, in one request, and only falls back to trying each volume's label as a top-level name when the server will not list it. It only reads
 - **Add names by hand** takes a pasted list and checks each name against the index, for a label that has no volume record
 - The drive-icon menu keeps `Volumes` and `mnt` at the top and lists the labels under **Imported volumes**
 - **Scan all imported volumes into search** analyzes each label in turn, because search only covers what has been scanned
@@ -92,7 +92,7 @@ longer required.
    - Port: Usually `8000`
    - Archive Index: The index to query (e.g., `Default-Archive`)
    - Username/Password: Your P5 credentials
-3. **Enter a Starting Path** - Type a path like `Volumes/YourVolume`. For an imported-volumes index, start from a volume label instead: see [Imported Volumes](#imported-volumes)
+3. **Enter a Starting Path** - Type a path like `Volumes/YourVolume`. For an imported-volumes index, leave the path empty to list its volume labels: see [Imported Volumes](#imported-volumes)
 4. **Browse or Analyze**:
    - Click **Browse** to view the contents of that path
    - Click **Analyze** to recursively scan all subdirectories
@@ -220,7 +220,7 @@ http://p5-search.example.invalid:8000/rest/v1/archive/indexes/Example-Archive/in
 - Every request is also recorded in the unified log; in Terminal, `log show --last 1h --predicate 'category == "requests"'`
 
 ### Nothing appears in an imported-volumes index
-`Volumes` and `mnt` return nothing there: that index is rooted at volume labels. Open the server, click **Find imported volumes…**, add what it finds, and start from a label in the drive-icon menu.
+`Volumes` and `mnt` return nothing there: that index is rooted at volume labels. Browse an empty path to list the labels, or open the server and click **Find imported volumes…**, add what it finds, and pick a label in the drive-icon menu.
 
 ### No Items Displayed
 - Verify the archive index name is correct
@@ -251,6 +251,12 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.9 (Build 22) — 2026-10-14
+- Browsing the root of an index lists it, so an imported-volumes index shows its volume labels as folders without typing one. **Find imported volumes…** lists the root first and searches as soon as it opens
+- A server pinned to one certificate that presents a different one is explained, with the trusted and presented fingerprints and what the server last reported, and offers **Review Certificate…**. The app remembers each server's P5 release and certificate and logs a change
+- Restore works against P5 8.0.6, which returns an archive entry's ID in a different form
+- Double-click a server in Manage Servers to edit it
 
 ### 2.8 (Build 19) — 2026-09-25
 - Find the volume labels of an imported-volumes index, and offer them as browse roots and scan paths, so they need not be typed. **Scan all imported volumes into search** covers them
