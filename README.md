@@ -63,7 +63,13 @@ Search your indexed items instantly without making API calls. Filter by:
 - Item type (files only, directories only)
 
 ### Multiple Server Support
-Configure connections to multiple P5 servers, each with their own archive index. Switch between servers easily from the sidebar.
+Configure connections to multiple P5 servers, each with their own archive index. Switch between servers easily from the sidebar. Right-click a server for **Edit…** (opens Manage Servers already selected to it) and **Delete…** (asks whether to also delete that server's indexed inventory).
+
+### Demo Mode
+A server can be flagged as a demo server (Manage Servers → Add) and answer from a built-in scenario instead of a real P5 installation — no address, credentials or network connection needed. The Add Server sheet suggests a name, a Canadian city paired with a production type, with a shuffle button for another. The demo archive index is two to three levels deep and spread across different tapes, so Fetch Barcodes resolves a different barcode per production, and both calculated folder size and barcode bubble up to every level — the same strength Archive Search has over P5's own web GUI, which shows neither until a restore.
+
+### Search DB row/range deletion
+Select a single row, a shift-click range, or a scattered cmd-click selection in Search DB, and delete just those — by Delete/Backspace, right-click, or a toolbar trash button that appears only while something is selected. Clear Database (the red trash button) still wipes everything.
 
 ### Export Options
 - **JSON** - Raw API responses saved automatically with each query
@@ -251,6 +257,12 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.11 (Build 26) — 2026-10-27
+- **Demo Mode** — flag a server as a demo server and explore a built-in scenario with no address, credentials or network needed; the Add Server sheet suggests a Canadian-city name
+- Right-click a server in the sidebar for **Edit…** and **Delete…**
+- Search DB supports selecting and deleting a single row, a range, or a scattered selection, without wiping the whole database
+- The demo archive index is two to three levels deep across different tapes, so Fetch Barcodes resolves a different barcode per production, and folder size and barcode both bubble up to every level
 
 ### 2.9 (Build 22) — 2026-10-14
 - Browsing the root of an index lists it, so an imported-volumes index shows its volume labels as folders without typing one. **Find imported volumes…** lists the root first and searches as soon as it opens
