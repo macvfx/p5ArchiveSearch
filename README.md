@@ -19,7 +19,9 @@ The **Analyze** feature recursively scans all subdirectories from a starting pat
 
 - Start from any path and scan all subdirectories automatically
 - Real-time progress showing current folder, folders scanned, and items indexed
-- Stop anytime with the Stop button
+- Stop anytime with the Stop button; tick **Resume** and Analyze the same path again to continue, skipping folders already finished
+- Safe on a whole index: the scan runs in the background, so the window stays responsive and memory stays flat
+- Folder sizes are saved as each folder finishes, so a stop or crash loses nothing
 - Continues scanning even if individual folders encounter errors
 - Rate-limited requests to avoid overwhelming the server
 
@@ -257,6 +259,12 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.12 (Build 27) — 2026-11-11 (beta)
+- Analyzing a whole index, even from a root-level volume, no longer freezes the window or grows memory: the scan runs in the background and the on-screen log is capped (the full log is kept in a file per day)
+- **Resume** checkbox next to Analyze continues an interrupted scan, skipping folders already finished; folder sizes are saved as each folder finishes
+- A folder with an unreadable subfolder is saved as Partial instead of Complete
+- Faster database writes (WAL mode) and a faster Fetch Barcodes
 
 ### 2.11 (Build 26) — 2026-10-27
 - **Demo Mode** — flag a server as a demo server and explore a built-in scenario with no address, credentials or network needed; the Add Server sheet suggests a Canadian-city name
