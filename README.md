@@ -260,6 +260,11 @@ changed on the server, do not trust the new one.
 
 ## Version History
 
+### 2.13 (Build 29) — 2026-11-13 (beta)
+- Switching from Search DB back to Browse no longer beach-balls after a long scan: the activity log is laid out only for what is on screen
+- A cancelled restore shows **Cancelling** and then **Cancelled** instead of staying on Running, including after quitting and reopening the app
+- A job that disappears from P5, and a cancel request P5 refuses, each say what that means
+
 ### 2.12 (Build 27) — 2026-11-11 (beta)
 - Analyzing a whole index, even from a root-level volume, no longer freezes the window or grows memory: the scan runs in the background and the on-screen log is capped (the full log is kept in a file per day)
 - **Resume** checkbox next to Analyze continues an interrupted scan, skipping folders already finished; folder sizes are saved as each folder finishes
