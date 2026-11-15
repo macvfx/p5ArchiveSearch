@@ -69,6 +69,12 @@ Search your indexed items instantly without making API calls. Filter by:
 ### Multiple Server Support
 Configure connections to multiple P5 servers, each with their own archive index. Switch between servers easily from the sidebar. Right-click a server for **Edit…** (opens Manage Servers already selected to it) and **Delete…** (asks whether to also delete that server's indexed inventory).
 
+### Move an index to another Mac
+**Tools ▸ Export Database…** saves a server's index, analyzed folder sizes, volume barcodes and, optionally, its scan history and connection details to one `.p5searchdb` file. **Tools ▸ Import Database…** on another Mac reads it, so that Mac can search the archive without scanning it again. Each server in the file can be included, left out or imported under a different name; an import replaces only the server it names, and adds the server to the sidebar when it is not set up there. The file never holds a password.
+
+### Database size
+Settings (⌘,) shows how much disk the database takes and what each server holds, with **Compact** to give back the space left behind by deleted items.
+
 ### Demo Mode
 A server can be flagged as a demo server (Manage Servers → Add) and answer from a built-in scenario instead of a real P5 installation — no address, credentials or network connection needed. The Add Server sheet suggests a name, a Canadian city paired with a production type, with a shuffle button for another. The demo archive index is two to three levels deep and spread across different tapes, so Fetch Barcodes resolves a different barcode per production, and both calculated folder size and barcode bubble up to every level — the same strength Archive Search has over P5's own web GUI, which shows neither until a restore.
 
@@ -80,6 +86,7 @@ Select a single row, a shift-click range, or a scattered cmd-click selection in 
 - **CSV** - Export search results or browse results to CSV format
 - **Scan History CSV** - Every Analyze run with its duration in seconds and its size in bytes and TB
 - **SQLite Database** - All indexed items stored locally for fast access
+- **Database export** - A server's whole index in one `.p5searchdb` file, for import on another Mac
 
 ### Secure Credentials
 Server passwords are stored securely in the macOS Keychain, never in plain text.
@@ -195,6 +202,8 @@ Stores all indexed items with the following information:
 - Server and archive index
 - Query date
 
+Settings (⌘,) shows the size of the database. The file does not shrink when items are deleted until you use **Compact** there.
+
 ### Output Files
 Location: `~/Documents/P5ArchiveSearch/`
 
@@ -265,6 +274,10 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.15 (Build 31) — 2026-11-15 (beta)
+- **Export Database** and **Import Database** (Tools menu) carry a server's index, analyzed folder sizes, barcodes and scan history to another Mac in one file, instead of scanning again; an import adds the server to the sidebar and never carries a password
+- Settings shows the size of the database and what each server holds, with **Compact** to reclaim the space left by deleted items
 
 ### 2.14 (Build 30) — 2026-11-14 (beta)
 - A folder P5 lists without a volume of its own is no longer shown as not archived: it shows a green tick and its archive date, or a dash until analyzed when it has neither
