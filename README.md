@@ -22,6 +22,8 @@ The **Analyze** feature recursively scans all subdirectories from a starting pat
 - Stop anytime with the Stop button; tick **Resume** and Analyze the same path again to continue, skipping folders already finished
 - Safe on a whole index: the scan runs in the background, so the window stays responsive and memory stays flat
 - Folder sizes are saved as each folder finishes, so a stop or crash loses nothing
+- An analyzed folder shows the newest archive date and modified date of what is inside it, and the volumes and barcodes its contents are on
+- **Scan History** (Tools menu) records every Analyze run: the folder, when it started, how long it took and how much it read
 - Continues scanning even if individual folders encounter errors
 - Rate-limited requests to avoid overwhelming the server
 
@@ -76,6 +78,7 @@ Select a single row, a shift-click range, or a scattered cmd-click selection in 
 ### Export Options
 - **JSON** - Raw API responses saved automatically with each query
 - **CSV** - Export search results or browse results to CSV format
+- **Scan History CSV** - Every Analyze run with its duration in seconds and its size in bytes and TB
 - **SQLite Database** - All indexed items stored locally for fast access
 
 ### Secure Credentials
@@ -130,6 +133,9 @@ Displays items at the current path with columns for:
 - Volume/Media label
 - Archived status and date
 - Modification date
+
+P5 lists many folders without a volume of their own. Such a folder shows its own archive date when
+P5 sent one; once analyzed, it also shows the volumes, barcodes and dates of what is inside it.
 - Navigation path
 
 Double-click any folder to navigate into it.
@@ -259,6 +265,11 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.14 (Build 30) — 2026-11-14 (beta)
+- A folder P5 lists without a volume of its own is no longer shown as not archived: it shows a green tick and its archive date, or a dash until analyzed when it has neither
+- Analyzed folders fill in Archived date, Volume/Media, Barcode and Modified from their contents, in Browse and Search DB
+- **Scan History** (Tools menu) lists every Analyze run with its folder, duration, size read and result, and exports to CSV
 
 ### 2.13 (Build 29) — 2026-11-13 (beta)
 - Switching from Search DB back to Browse no longer beach-balls after a long scan: the activity log is laid out only for what is on screen
