@@ -50,7 +50,7 @@ its own Protocol setting, since TLS is enabled per installation.
 - The setting applies everywhere the app talks to P5, including restores
 
 ### Imported Volumes
-An index rooted at **volume labels**, such as Imported-Volumes, has no `Volumes` or `mnt` at its top. Its top level is the label of each volume, with the original folders inside. Browsing an empty path lists those labels, so you can open one without typing it. Each index is its own server entry, added once per P5 server.
+An index rooted at **volume labels**, such as Imported-Volumes, has no `Volumes` or `mnt` at its top. Its top level is the label of each volume, with the original folders inside. Browsing `/` lists those labels, so you can open one without typing it. Each index is its own server entry, added once per P5 server.
 
 - **Find imported volumes…** in the server sheet opens and searches at once. It lists the top level of the index, which is the labels, in one request, and only falls back to trying each volume's label as a top-level name when the server will not list it. It only reads
 - **Add names by hand** takes a pasted list and checks each name against the index, for a label that has no volume record
@@ -110,7 +110,7 @@ longer required.
    - Port: Usually `8000`
    - Archive Index: The index to query (e.g., `Default-Archive`)
    - Username/Password: Your P5 credentials
-3. **Enter a Starting Path** - Type a path like `Volumes/YourVolume`. For an imported-volumes index, leave the path empty to list its volume labels: see [Imported Volumes](#imported-volumes)
+3. **Enter a Starting Path** - Type a path like `/Volumes/YourVolume`, or leave the path at `/` to list the top of the index. For an imported-volumes index the top is its volume labels: see [Imported Volumes](#imported-volumes)
 4. **Browse or Analyze**:
    - Click **Browse** to view the contents of that path
    - Click **Analyze** to recursively scan all subdirectories
@@ -125,12 +125,12 @@ The Browse tab provides an interactive file browser for the P5 archive index.
 **Navigation Bar**
 - **Back button (←)** - Return to previous location
 - **Up button (↑)** - Go to parent directory
-- **Path field** - Enter or edit the current path
+- **Path field** - Enter or edit the current path, shown with its leading slash; `/` is the top of the index. Choosing another server in the sidebar returns it to `/`
 - **Browse button** - Query the current path
 - **Analyze button** - Recursively scan all subdirectories
 
 **Breadcrumb Trail**
-Click any path component to jump directly to that location. Click "Root" to return to the top level.
+Click any path component to jump directly to that location. Click "Root" to list the top level.
 
 **Results Table**
 Displays items at the current path with columns for:
@@ -243,7 +243,7 @@ http://p5-search.example.invalid:8000/rest/v1/archive/indexes/Example-Archive/in
 - Every request is also recorded in the unified log; in Terminal, `log show --last 1h --predicate 'category == "requests"'`
 
 ### Nothing appears in an imported-volumes index
-`Volumes` and `mnt` return nothing there: that index is rooted at volume labels. Browse an empty path to list the labels, or open the server and click **Find imported volumes…**, add what it finds, and pick a label in the drive-icon menu.
+`Volumes` and `mnt` return nothing there: that index is rooted at volume labels. Browse `/` to list the labels, or open the server and click **Find imported volumes…**, add what it finds, and pick a label in the drive-icon menu.
 
 ### No Items Displayed
 - Verify the archive index name is correct
@@ -274,6 +274,11 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.16 (Build 32) — 2026-11-15 (beta)
+- Choosing another server in the sidebar starts **Browse** at that server's root, instead of asking it for the folder the previous server was in
+- The path field shows the path with its leading slash (`/Volumes/YourVolume`, and `/` for the top of the index) instead of a separate `/` beside it
+- **Root** in the breadcrumb lists the top of the index instead of only clearing the path
 
 ### 2.15 (Build 31) — 2026-11-15 (beta)
 - **Export Database** and **Import Database** (Tools menu) carry a server's index, analyzed folder sizes, barcodes and scan history to another Mac in one file, instead of scanning again; an import adds the server to the sidebar and never carries a password
