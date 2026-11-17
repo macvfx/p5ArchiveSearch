@@ -37,6 +37,9 @@ the job to completion.
   barcode reader is the only clue to which tape is needed
 - Long jobs keep being watched, and a restore interrupted by quitting the app is picked up again
 - Every restore the app has asked for is kept, including ones that did not finish
+- Select several files or folders and restore them together to one destination, chosen by typing,
+  dropping a folder or **Choose…**
+- Restores are queued and sent to P5 one at a time, so you can keep searching while they run
 
 ### HTTP or HTTPS per server
 P5 serves the same REST API in the clear on port 8000 and over TLS on port 8443. Each server has
@@ -274,6 +277,12 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.17 (Build 35) — 2026-11-17 (beta)
+- Select several files or folders in **Browse** or **Search DB** and restore them together to one destination; each is its own P5 job
+- **Queue Restore** closes the sheet so you can keep searching; queued restores go to P5 one at a time, and **Tools ▸ Restore Queue…** shows where each one is
+- **Choose…** beside the restore destination opens a folder dialog, which can create a folder; it browses this Mac, so type the path for another client
+- **Browse** allows selecting more than one row
 
 ### 2.16 (Build 32) — 2026-11-15 (beta)
 - Choosing another server in the sidebar starts **Browse** at that server's root, instead of asking it for the folder the previous server was in
