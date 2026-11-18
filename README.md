@@ -40,6 +40,7 @@ the job to completion.
 - Select several files or folders and restore them together to one destination, chosen by typing,
   dropping a folder or **Choose…**
 - Restores are queued and sent to P5 one at a time, so you can keep searching while they run
+- Choose the P5 client that receives restores and make it the default for that server; `localhost` is preselected when there is no default
 
 ### HTTP or HTTPS per server
 P5 serves the same REST API in the clear on port 8000 and over TLS on port 8443. Each server has
@@ -277,6 +278,11 @@ changed on the server, do not trust the new one.
 | Cancel | Escape |
 
 ## Version History
+
+### 2.18 (Build 36) — 2026-11-17 (beta)
+- The restore sheet has a labelled **P5 client** row with **Make Default**, remembered per server; without a default, `localhost` (the P5 server itself) is preselected instead of whichever client answered first
+- A line under the picker says the folder must exist on that client, and turns orange when it is not `localhost`
+- P5's report is shown open in **Tools ▸ Restore Queue…**, so the reason for a failed restore is visible straight away
 
 ### 2.17 (Build 35) — 2026-11-17 (beta)
 - Select several files or folders in **Browse** or **Search DB** and restore them together to one destination; each is its own P5 job
